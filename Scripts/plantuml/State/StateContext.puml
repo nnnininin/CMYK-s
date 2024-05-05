@@ -1,0 +1,12 @@
+@startuml
+class StateContext {
+    + StateContext()
+    + AddState(state:IState.State, stateClass:IState.IState) : void
+    + ChangeState(next:IState.State) : void
+    + Update() : void
+    + FixedUpdate() : void
+}
+class "Dictionary`2"<T1,T2> {
+}
+StateContext --> "_stateTable<IState.State,IState.IState>" "Dictionary`2"
+@enduml

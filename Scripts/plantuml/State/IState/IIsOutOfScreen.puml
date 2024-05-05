@@ -1,0 +1,5 @@
+@startuml
+interface IIsOutOfScreen {
+    + IsOutOfScreen() : bool
+}
+@enduml

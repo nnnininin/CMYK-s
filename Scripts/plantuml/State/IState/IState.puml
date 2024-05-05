@@ -1,0 +1,14 @@
+@startuml
+interface IState {
+    Entry() : void
+    Update() : void
+    FixedUpdate() : void
+    Exit() : void
+}
+enum State {
+    Idle,
+    Chase,
+    GoStraight,
+}
+IState --> "State" State
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+class GetSpawnPoints {
+    - <<const>> HorizontalSpawnPointNumber : int = 32
+    - <<const>> VerticalSpawnPointNumber : int = 18
+    - <<const>> NumberOfEnemySpawnLine : int = 2
+    - _horizontalDistanceBetweenSpawnPoint : float
+    - _verticalDistanceBetweenSpawnPoint : float
+    - Awake() : void
+    - InitializeSpawnPoint() : void
+    - CalculateSpawnPosition(spawnPointArray:IReadOnlyList<Vector3[]>, isHorizontal:bool, isLineIncreasingDirectionPositive:bool) : void
+    + GetTopSpawnPointInScreen() : Vector3[][]
+    + GetBottomSpawnPointInScreen() : Vector3[][]
+    + GetLeftSpawnPointInScreen() : Vector3[][]
+    + GetRightSpawnPointInScreen() : Vector3[][]
+}
+MonoBehaviour <|-- GetSpawnPoints
+@enduml

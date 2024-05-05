@@ -1,0 +1,8 @@
+@startuml
+class ChaserController {
+    + <<override>> CheckTransitions() : IState.State
+    # <<override>> AddUniqueStates() : void
+    # <<override>> SetInitialState() : IState.State
+}
+BaseController <|-- ChaserController
+@enduml

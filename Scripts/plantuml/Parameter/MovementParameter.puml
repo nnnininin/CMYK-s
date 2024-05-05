@@ -1,0 +1,13 @@
+@startuml
+class MovementParameter {
+    + MovingSpeed : float <<get>>
+    + ChasingAccuracy : float <<get>>
+    + MovementParameter(enemyScriptableObject:EnemyScriptableObject, targetPosition:Vector3, currentPosition:Vector3)
+    + SetTargetPosition(targetPosition:Vector3) : void
+    + SetCurrentPosition(currentPosition:Vector3) : void
+    + SetCurrentVelocity(currentVelocity:Vector3) : void
+}
+MovementParameter --> "TargetPosition" Vector3
+MovementParameter --> "CurrentPosition" Vector3
+MovementParameter --> "CurrentVelocity" Vector3
+@enduml

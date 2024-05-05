@@ -1,0 +1,12 @@
+@startuml
+abstract class BaseController {
+    + SetInitialState(enemy:IEnemy) : IState.State
+    + {abstract} CheckTransitions() : IState.State
+    - AddCommonStates() : void
+    # {abstract} AddUniqueStates() : void
+    # {abstract} SetInitialState() : IState.State
+}
+IController <|-- BaseController
+BaseController --> "Enemy" IEnemy
+BaseController --> "StateContext" StateContext
+@enduml

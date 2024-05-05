@@ -1,0 +1,8 @@
+@startuml
+class StageScriptableObject {
+    - maxEvaluationValue : int
+    + MaxEvaluationValue : int <<get>>
+    - periodTime : float
+    + PeriodTime : float <<get>>
+}
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+class BlinkEnemy {
+    - _isTweening : bool
+    - <<const>> BlinkTime : float = 0.05f
+    - Start() : void
+    - {static} BrightenColor(originalColor:Color) : Color
+    - SetUniRx() : void
+}
+MonoBehaviour <|-- BlinkEnemy
+BlinkEnemy --> "enemy" Enemy
+@enduml

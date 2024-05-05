@@ -1,0 +1,11 @@
+@startuml
+class IdleState {
+    + IdleState(enemy:IEnemy)
+    # <<override>> OnEntry() : void
+    # <<override>> OnUpdate() : void
+    # <<override>> OnFixedUpdate() : void
+    # <<override>> OnExit() : void
+}
+BaseState <|-- IdleState
+IdleState --> "State" State
+@enduml

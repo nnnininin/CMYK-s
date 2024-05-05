@@ -1,0 +1,17 @@
+@startuml
+class HitPoint {
+    + MaxHitPoint : int <<get>>
+    + CurrentHitPoint : int <<get>>
+    + IsDead : bool <<get>>
+    + HitPoint(maxHitPoint:int)
+    + RecoverDamage(recoverPoint:int) : void
+    + ReceiveDamage(damage:int) : void
+}
+class "Subject`1"<T> {
+}
+class "IObservable`1"<T> {
+}
+IReceiveDamage <|-- HitPoint
+HitPoint o-> "_onDamageReceived<int>" "Subject`1"
+HitPoint --> "OnDamageReceived<int>" "IObservable`1"
+@enduml

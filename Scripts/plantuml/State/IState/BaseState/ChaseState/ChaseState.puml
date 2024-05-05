@@ -1,0 +1,13 @@
+@startuml
+class ChaseState {
+    + ChaseState(enemy:IEnemy)
+    # <<override>> OnEntry() : void
+    # <<override>> OnUpdate() : void
+    # <<override>> OnFixedUpdate() : void
+    # <<override>> OnExit() : void
+    + GetSeparationVector() : Vector3
+}
+BaseState <|-- ChaseState
+IGetSeparationVector <|-- ChaseState
+ChaseState --> "State" State
+@enduml

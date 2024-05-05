@@ -1,0 +1,6 @@
+@startuml
+interface IController {
+    SetInitialState(enemy:IEnemy) : IState.State
+    CheckTransitions() : IState.State
+}
+@enduml

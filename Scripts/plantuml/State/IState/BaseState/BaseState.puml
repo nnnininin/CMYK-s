@@ -1,0 +1,29 @@
+@startuml
+abstract class BaseState {
+    # BaseState(enemy:IEnemy)
+    + Entry() : void
+    # {abstract} OnEntry() : void
+    + Update() : void
+    # {abstract} OnUpdate() : void
+    + FixedUpdate() : void
+    # {abstract} OnFixedUpdate() : void
+    + Exit() : void
+    # {abstract} OnExit() : void
+    - Dead() : void
+    # Disappear() : void
+}
+class "List`1"<T> {
+}
+IState <|-- BaseState
+BaseState --> "enemy" IEnemy
+BaseState --> "MainCamera" Camera
+BaseState --> "EventManager" EventManager
+BaseState --> "Rigidbody" Rigidbody
+BaseState --> "CloseEnemies<GameObject>" "List`1"
+BaseState --> "HitPoint" HitPoint
+BaseState --> "MovementParameter" MovementParameter
+BaseState --> "PlayerInstance" GameObject
+BaseState --> "SpawnPositionInScreen" Vector3
+BaseState --> "SpawnPositionInWorld" Vector3
+BaseState --> "State" State
+@enduml

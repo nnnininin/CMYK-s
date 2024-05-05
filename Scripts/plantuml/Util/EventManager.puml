@@ -1,0 +1,8 @@
+@startuml
+class EventManager {
+}
+class "Subject`1"<T> {
+}
+EventManager o-> "OnDamageReceived<int>" "Subject`1"
+EventManager o-> "OnDeath<Unit>" "Subject`1"
+@enduml
