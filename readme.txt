@@ -1,0 +1,1 @@
+自作ゲーム「CMY」のScriptsです。UniRxやZenject等のライブラリは除いています。
