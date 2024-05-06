@@ -21,9 +21,6 @@ namespace Enemy.State.StateControllers
             Debug.Log($"EnemyIdNumber: {enemyIdNumber}");
             AddCommonStates(Enemy);
         }
-        
-        // 派生クラスで固有の状態を追加するためのメソッド
-        public abstract void AddUniqueStates();
 
         public IState.State GetInitialState()
         {
@@ -39,5 +36,8 @@ namespace Enemy.State.StateControllers
             StateContext.AddState(IState.State.Idle, new IdleState(enemy));
             StateContext.AddState(IState.State.Death, new DeathState(enemy));
         }
+        
+        // 派生クラスで固有の状態を追加するためのメソッド
+        public abstract void AddUniqueStates();
     }
 }

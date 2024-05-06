@@ -1,5 +1,0 @@
-@startuml
-interface IGetSeparationVector {
-    + GetSeparationVector() : Vector3
-}
-@enduml

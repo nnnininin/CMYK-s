@@ -6,6 +6,7 @@ using Util;
 
 namespace Enemy.State.BaseState.GoStraightState.ExplodeState
 {
+    //爆発してダメージゾーンを生成する状態
     public class ExplodeState : 
         GoStraightState
     {
@@ -17,10 +18,9 @@ namespace Enemy.State.BaseState.GoStraightState.ExplodeState
 
         protected override void OnEntry()
         {
-            // プレハブのみを非同期でロード
+            // 出現させるダメージゾーンを非同期でロード
             Addressables.LoadAssetAsync<GameObject>(StaticAddressableKeys.DamageZone)
                 .Completed += OnPrefabLoaded;
-
         }
         protected override void OnUpdate() { }
         protected override void OnFixedUpdate() { }
@@ -50,6 +50,7 @@ namespace Enemy.State.BaseState.GoStraightState.ExplodeState
             {
                 Debug.LogError("Failed to load the DamageZone prefab.");
             }
+            // 爆発したら死亡処理
             Die();
         }
     }

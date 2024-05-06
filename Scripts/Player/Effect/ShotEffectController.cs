@@ -60,15 +60,15 @@ namespace Player.Effect
         
         private void DOScaleMagazinePercentage(float percentage)
         {
-            _shotEffect.DOScaleMagazinePercentage(percentage);
+            _shotEffect.ScaleMagazinePercentage(percentage);
         }
         private void DOScaleToOne()
         {
-            _shotEffect.DOScaleToOne();
+            _shotEffect.ScaleToOne();
         }
         private void DOScaleToZero()
         {
-            _shotEffect.DOScaleToZero();
+            _shotEffect.ScaleToZero();
         }
         private void Reload(float reloadTime)
         {

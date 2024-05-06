@@ -15,7 +15,9 @@ namespace CameraScript
         [Inject]
         private GlobalPlayerEventManager _globalPlayerEventManager;
 
+        //敵の死亡時の振動
         private CinemachineImpulseSource _enemyDeathImpulseSource;
+        //プレイヤーのダメージ時の振動
         private CinemachineImpulseSource _playerDamageImpulseSource;
         
         private void Start()

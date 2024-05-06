@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Enemy.Util
 {
+    //敵を点滅させる
     public class BlinkEnemy : MonoBehaviour
     {
         [SerializeField] private BaseEnemy baseEnemy;
@@ -60,6 +61,8 @@ namespace Enemy.Util
                 .AddTo(this);
         }
         
+        //点滅させるマテリアルを取得
+        //ここでは点滅を表現するためのBlinkマテリアルを文字列で指定して取得
         private void GetBlinkMaterial()
         {
             blinkMaterial = Array.Find(renderer.materials, m => m.name.StartsWith(MaterialName));

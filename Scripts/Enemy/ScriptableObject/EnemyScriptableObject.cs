@@ -8,6 +8,7 @@ namespace Enemy.ScriptableObject
     [CreateAssetMenu(fileName = "Enemy", menuName = "ScriptableObjects/Enemy")]
     public class EnemyScriptableObject : UnityEngine.ScriptableObject
     {
+        //敵のプレハブはここで設定する
         [SerializeField]
         private GameObject enemyPrefab;
         public GameObject EnemyPrefab => enemyPrefab;
@@ -23,7 +24,7 @@ namespace Enemy.ScriptableObject
         [SerializeField]
         private string description;
         public string Description => description;
-        
+        //評価値(敵の出現パターンに関係)
         [SerializeField]
         private int evaluation;
         public int Evaluation => evaluation;
@@ -40,10 +41,12 @@ namespace Enemy.ScriptableObject
         private int movingSpeed;
         public int MovingSpeed => movingSpeed;
         
+        //追跡の精度
         [SerializeField]
         private float chasingAccuracy;
         public float ChasingAccuracy => chasingAccuracy;
         
+        //敵の行動パターン遷移条件をIControllerを継承したクラスで設定する
         [SerializeReference][SubclassSelector]
         private IController controller;
         

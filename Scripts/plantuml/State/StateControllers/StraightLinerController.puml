@@ -1,8 +1,0 @@
-@startuml
-class StraightLinerController {
-    + <<override>> CheckTransitions() : IState.State
-    # <<override>> AddUniqueStates() : void
-    # <<override>> SetInitialState() : IState.State
-}
-BaseController <|-- StraightLinerController
-@enduml

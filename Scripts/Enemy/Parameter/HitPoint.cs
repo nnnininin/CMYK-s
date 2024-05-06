@@ -10,10 +10,10 @@ namespace Enemy.Parameter
         private int MaxHitPoint { get; }
         private int CurrentHitPoint { get; set; }
         //ダメージブースト倍率
-        private float _damageBoostRate = 1.5f;
-        
+        private const float DamageBoostRate = 1.5f;
+
         private const float DamageBoostDuration = 5.0f;
-        private float _timeToRestoreDamageBoost;
+        private float _timeToDamageBoost;
         public bool IsDead => CurrentHitPoint <= 0;
 
         private readonly Subject<int> _onDamageReceived = new();
@@ -23,20 +23,22 @@ namespace Enemy.Parameter
         {
             MaxHitPoint = maxHitPoint;
             CurrentHitPoint = maxHitPoint;
-            _timeToRestoreDamageBoost = 0;
+            _timeToDamageBoost = 0;
         }
         
+        //ダメージを回復する
         public void RecoverDamage(int recoverPoint)
         {
             var newHitPoint = CurrentHitPoint + recoverPoint;
             CurrentHitPoint = newHitPoint > MaxHitPoint ? MaxHitPoint : newHitPoint;
         }
         
+        //ダメージを受ける
         public void ReceiveDamage(int damage)
         {
-            if (_timeToRestoreDamageBoost > 0)
+            if (_timeToDamageBoost > 0)
             {
-                damage = (int)(damage * _damageBoostRate);
+                damage = (int)(damage * DamageBoostRate);
             }
             Debug.Log("ReceiveDamage: " + damage);
             CurrentHitPoint -= damage;
@@ -45,17 +47,19 @@ namespace Enemy.Parameter
             Debug.Log("IsDead: " + IsDead);
         }
         
+        //受けるダメージが増大する、ダメージブースト状態にする
         public void SetDamageBoost()
         {
-            _timeToRestoreDamageBoost = DamageBoostDuration;
+            _timeToDamageBoost = DamageBoostDuration;
         }
         
-        public void RestoreCountDown(float deltaTime)
+        //ダメージブーストが直るまでのカウントダウン
+        public void RestoreFromDamageBoostCountDown(float deltaTime)
         {
-            if (_timeToRestoreDamageBoost <= 0) return;
-            _timeToRestoreDamageBoost -= deltaTime;
-            if (_timeToRestoreDamageBoost > 0) return;
-            _timeToRestoreDamageBoost = 0;
+            if (_timeToDamageBoost <= 0) return;
+            _timeToDamageBoost -= deltaTime;
+            if (_timeToDamageBoost > 0) return;
+            _timeToDamageBoost = 0;
         }
     }
 }

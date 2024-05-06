@@ -1,6 +1,0 @@
-@startuml
-class AttackParameter {
-    + AttackPower : int <<get>>
-    + AttackParameter(attackPower:int)
-}
-@enduml

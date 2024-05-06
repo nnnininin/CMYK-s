@@ -27,6 +27,7 @@ namespace Player.Parameter
         {
             return hitPoint;
         }
+        //ダメージを受けた時の処理
         public void ReceiveDamage(int damage)
         {
             if(_currentHitPoint.Value - damage < 0)

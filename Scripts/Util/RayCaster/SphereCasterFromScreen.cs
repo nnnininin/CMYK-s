@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Util.RayCaster
 {
+    //画面に向けてスクリーンとなるカメラから球状のRayを飛ばし、指定したレイヤーに当たったオブジェクトを取得するクラス
     public class SphereCasterFromScreen : RayCasterFromScreen
     {
         private float SphereRadius { get; }

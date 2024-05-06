@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Util.RayCaster
 {
+    //画面に向けてスクリーンとなるカメラから球状のRayを飛ばし、指定したレイヤーに当たった全てのオブジェクトを取得するクラス
     public class SphereCasterNonAllocFromScreen: RayCasterNonAllocFromScreen
     { 
         //rayOriginの位置によっては、当てたいものが球の内側に入ったままrayが消えてしまうことがあるため、

@@ -23,7 +23,7 @@ namespace Player.Bullet
         
         private static Vector3 ScreenCenter => new Vector3((float)Screen.width / 2, (float)Screen.height / 2, 0);
 
-        private const float Radius = 1.3f;
+        private const float SpawnDistanceFromPlayer = 1.3f;
         private const float SpreadAngle = 5f;
 
         private void Awake()
@@ -47,24 +47,34 @@ namespace Player.Bullet
                 Debug.LogError("WayNumber must be odd number!");
                 return;
             }
+            // マウスの位置を取得
             var mousePosition = UnityEngine.Input.mousePosition;
+            // マウスの位置から中心座標を引いて方向を取得
             var fromCenterToMouse = mousePosition - ScreenCenter;
+            // 方向をセット
             _player.SetMouseInputDirection(fromCenterToMouse);
             
+            //マウス位置にRayを飛ばして当たった位置を取得
             var hitInfo = rayCasterFromScreen.GetRayCastHit(mousePosition, Color.red);
             if (hitInfo == null) return;
             var hitPosition = hitInfo.Value.point;
             
+            //現在位置からhitPositionまでの方向を取得
             _originalDirection = OriginalDirection(hitPosition);
-            _bulletLocalPosition = _originalDirection * Radius;
+            //弾のローカル座標を設定
+            _bulletLocalPosition = _originalDirection * SpawnDistanceFromPlayer;
             
+            //way数に応じて弾を生成
             var bullets = GetBullets(WayNumber);
+            //弾に速度などを割り当て
             AssignVelocityToBullets(bullets, _originalDirection);
             AssignSpawnPosition(bullets, transform.position);
             AssignDamage(bullets, _player.AttackPower.AttackPowerValue.Value);
             
+            //弾の発射音を再生
             audioSource.Play();
             
+            //残弾数を更新
             _player.Magazine.DecreaseBullet();
             UpdateRemainingBullet();
         }

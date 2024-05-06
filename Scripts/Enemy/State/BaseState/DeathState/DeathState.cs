@@ -6,8 +6,6 @@ namespace Enemy.State.BaseState.DeathState
             : base(enemy) { }
 
         public override IState.State State => IState.State.Death;
-        
-        // ReSharper disable Unity.PerformanceAnalysis
         protected override void OnEntry()
         {
             Die();

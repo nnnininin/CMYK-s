@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Util.RayCaster
 {
+    //画面に向けてスクリーンとなるカメラからRayを飛ばし、指定したレイヤーに当たったオブジェクトを取得するクラス
     public class RayCasterFromScreen
     {
         protected LayerMask LayerMask;
@@ -16,7 +17,7 @@ namespace Util.RayCaster
         private readonly Vector3 _cameraForward;
         private readonly float _rayOriginDistanceFromQuad;
 
-        // レイヤー名を指定しない場合はデフォルトのレイヤーを使用する
+        // レイヤー名を指定しない場合はデフォルトの当たり判定用のレイヤーを使用する
         public RayCasterFromScreen(float rayLength = 10f, string layerName = "DefaultRayHit")
         {
             RayLength = rayLength;

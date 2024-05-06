@@ -14,6 +14,7 @@ namespace Enemy.Util
 
         public void InstantiateItem(Vector3 position, ColorType colorType)
         {
+            // colorTypeに応じた色のアイテムを生成
             var itemPrefab = colorType switch
             {
                 ColorType.Cyan => cyanItemPrefab,

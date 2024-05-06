@@ -31,10 +31,10 @@ namespace Enemy
         private float _damageTimer;
         public bool BossFlag => EnemyScriptableObject.BossFlag;
         public Camera MainCamera => Camera.main;
-        public EnemyScriptableObject EnemyScriptableObject { get; private set; }
+        private EnemyScriptableObject EnemyScriptableObject { get; set; }
         private IController Controller { get; set; }
         public GameObject GameObject => gameObject;
-        public GameObject PlayerInstance { get; private set; }
+        private GameObject PlayerInstance { get; set; }
         private Player.IPlayer _player;
         public int EnemyIdNumber { get; private set; }  
         public EventManager EventManager { get; private set; } 
@@ -44,11 +44,11 @@ namespace Enemy
         public Vector3 SpawnPositionInWorld { get; private set; }   //ワールド座標における生成位置
         public HitPoint HitPoint { get; private set; }
         private AttackParameter AttackParameter { get; set; }
-        public Description Description { get; private set; }
+        public Character Character { get; private set; }
         public MovementParameter MovementParameter { get; private set; }
-        public bool IsTouchingPlayer{ get; private set; }   //プレイヤーに触れているかどうか
+        private bool IsTouchingPlayer{ get; set; }   //プレイヤーに触れているかどうか
         
-        //ReSharper disable once UnusedMethodReturnValue.Global
+        //敵を生成する際に呼び出すstaticメソッド
         public static IEnemy Init(
             GameObject prefab,
             EnemyScriptableObject enemyScriptableObject,
@@ -58,6 +58,7 @@ namespace Enemy
             DiContainer container
         )
         {
+            //プレハブから敵を生成
             var enemy = container.InstantiatePrefab(prefab).GetComponent<IEnemy>();
             //タグが違う場合は変更
             if (!enemy.GameObject.CompareTag(EnemyTag))
@@ -81,7 +82,7 @@ namespace Enemy
             Context?.Update();
             
             const int countInterval = 600;
-            //10秒ごとに近い敵のリストを更新
+            //10秒ごとに敵と近い敵のリストを更新
             if (Time.frameCount % countInterval == 0){
                 CloseEnemies.RemoveAll(item => item == null);
             }
@@ -89,12 +90,14 @@ namespace Enemy
 
         protected virtual void FixedUpdate()
         {
+            //controllerによる状態遷移をチェック
             var newState = Controller.CheckTransitions();
+            //状態が変わった場合は新しい状態に遷移
             if (newState == Context.PreviousState.State) return;
-
             Context.ChangeState(newState);
+            //状態に応じた処理を実行
             Context?.FixedUpdate();
-            
+            //プレイヤーにダメージを与える処理
             CausePlayerToDamage();
             Debug.Log($"Is touching player: {IsTouchingPlayer}");
         }
@@ -126,7 +129,7 @@ namespace Enemy
             Context = new StateContext();
             HitPoint = new HitPoint(EnemyScriptableObject.MaxHitPoint);
             AttackParameter = new AttackParameter(EnemyScriptableObject.AttackPower);
-            Description = new Description(
+            Character = new Character(
                 EnemyScriptableObject.EnemyName, 
                 EnemyScriptableObject.Description, 
                 EnemyScriptableObject.Evaluation)

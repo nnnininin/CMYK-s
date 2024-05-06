@@ -3,6 +3,8 @@ using UnityEngine;
 
 namespace Util.RayCaster
 {
+    //画面に向けてスクリーンとなるカメラからRayを飛ばし、指定したレイヤーに当たった
+    //全てのオブジェクトを取得するクラス
     public class RayCasterNonAllocFromScreen
     {
         protected LayerMask LayerMask;

@@ -4,6 +4,8 @@ namespace Manager
 {
     public class TimeScaleManager : MonoBehaviour
     {
+        //Time.timeScaleの値をインスペクターから設定できるようにする
+        
         //0~200の間で設定する
         [SerializeField, Range(0, 100)]
         private int timeScaleValue;

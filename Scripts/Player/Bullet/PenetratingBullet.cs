@@ -5,6 +5,8 @@ namespace Player.Bullet
 {
     public class PenetratingBullet: Bullet
     {
+        //貫通弾
+        //同じ敵に2度当たらないように、当たった敵のリストを保持しておく
         private readonly List<Enemy.IEnemy> _hitEnemies = new();
         
         protected override void CastRayToCurrentPosition(Vector3 worldPosition)
@@ -20,6 +22,7 @@ namespace Player.Bullet
             if (hitEnemy == null) return;
             if (!IsNotifyDamage) return;
             hitEnemy.HitPoint.ReceiveDamage(Damage);
+            //同じ敵に2度当たらないように、当たった敵をリストに追加
             _hitEnemies.Add(hitEnemy);
         }
     }

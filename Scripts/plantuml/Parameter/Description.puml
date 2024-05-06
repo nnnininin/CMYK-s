@@ -1,8 +1,0 @@
-@startuml
-class Description {
-    + Name : string <<get>>
-    + DescriptionText : string <<get>>
-    + Evaluation : int <<get>>
-    + Description(name:string, descriptionText:string, evaluation:int)
-}
-@enduml

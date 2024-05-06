@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Enemy.State.BaseState.SummonState
 {
+    // 召喚する状態
     public class SummonState : BaseState
     {
         public SummonState(IEnemy enemy) : base(enemy) { }
@@ -29,6 +30,7 @@ namespace Enemy.State.BaseState.SummonState
 
         private void TrySpawnEnemy()
         {
+            //eventManagerに通知
             EventManager.OnSummon.OnNext(Unit.Default);
         }
     }

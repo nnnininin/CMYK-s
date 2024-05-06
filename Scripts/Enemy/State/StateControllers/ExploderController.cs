@@ -7,6 +7,7 @@ namespace Enemy.State.StateControllers
     {
         public override IState.State CheckTransitions()
         {
+            //hpが0以下なら爆発状態に遷移
             return Enemy.HitPoint.IsDead ? IState.State.Explode : IState.State.GoStraight;
         }
         public override void AddUniqueStates()

@@ -19,7 +19,8 @@ namespace Player.Effect
             transform.localScale = Vector3.zero;
         }
         
-        public void DOScaleMagazinePercentage(float percentage)
+        //残弾数のpercentageに応じてスケールを変更
+        public void ScaleMagazinePercentage(float percentage)
         {
             //percentageをMinScaleValueから1.0fにマッピング
             var scaleValue = Mathf.Lerp(MinScaleValue, 1.0f, percentage);
@@ -29,14 +30,14 @@ namespace Player.Effect
                 .SetEase(Ease.OutBack).SetLink(gameObject);
         }
 
-        public void DOScaleToOne()
+        public void ScaleToOne()
         {
             _tweener?.Kill();
             _tweener = transform.DOScale(Vector3.one, Duration)
                 .SetEase(Ease.OutBack).SetLink(gameObject);
         }
 
-        public void DOScaleToZero()
+        public void ScaleToZero()
         {
             _tweener?.Kill();
             _tweener = transform.DOScale(Vector3.zero, Duration)

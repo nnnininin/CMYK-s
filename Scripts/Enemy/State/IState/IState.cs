@@ -18,7 +18,7 @@ namespace Enemy.State.IState
         void Exit();
     }
 
-    //*******ここにStateを追加***********
+    //*******Stateを追加したい場合、ここにStateを追加***********
     public enum State
     {
         Idle,

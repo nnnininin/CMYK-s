@@ -5,16 +5,23 @@ namespace Enemy.Util
 {
     public class GetSpawnPoints : MonoBehaviour
     {
+        //水平方向（上端下端）のスポーンポイントの数
         private const int HorizontalSpawnPointNumber = 32;
+        //垂直方向（左端右端）のスポーンポイントの数
         private const int VerticalSpawnPointNumber = 18;
+        //敵の出現する列の数
         private const int NumberOfEnemySpawnLine = 4;
 
         private float _horizontalDistanceBetweenSpawnPoint;
         private float _verticalDistanceBetweenSpawnPoint;
 
+        //画面上端のスポーンポイントの位置
         private Vector3[][] _topSpawnPointScreenPosition;
+        //画面下端のスポーンポイントの位置
         private Vector3[][] _bottomSpawnPointScreenPosition;
+        //画面左端のスポーンポイントの位置
         private Vector3[][] _leftSpawnPointScreenPosition;
+        //画面右端のスポーンポイントの位置
         private Vector3[][] _rightSpawnPointScreenPosition;
 
         private void Awake()
@@ -24,6 +31,7 @@ namespace Enemy.Util
 
         private void InitializeSpawnPoint()
         {
+            // スポーンポイント間の距離を計算
             _horizontalDistanceBetweenSpawnPoint = Screen.width / (float)HorizontalSpawnPointNumber;
             _verticalDistanceBetweenSpawnPoint = Screen.height / (float)VerticalSpawnPointNumber;
 
@@ -41,6 +49,7 @@ namespace Enemy.Util
                 _rightSpawnPointScreenPosition[i] = new Vector3[VerticalSpawnPointNumber];
             }
 
+            // スポーンポイントの位置を計算
             CalculateSpawnPosition(_topSpawnPointScreenPosition, true, true);
             CalculateSpawnPosition(_bottomSpawnPointScreenPosition, true, false);
             CalculateSpawnPosition(_leftSpawnPointScreenPosition, false, false);
@@ -53,13 +62,15 @@ namespace Enemy.Util
             bool isLineIncreasingDirectionPositive
             )
         {
+            // 水平方向の場合は水平方向のスポーンポイント数を、垂直方向の場合は垂直方向のスポーンポイント数を取得
             var pointNumber = isHorizontal ? HorizontalSpawnPointNumber : VerticalSpawnPointNumber;
-
+            
             for (var line = 0; line < NumberOfEnemySpawnLine; line++)
             {
                 for (var point = 0; point < pointNumber; point++)
                 {
                     var marginFromScreenEdge = line+1;
+                    // 水平方向の場合
                     if (isHorizontal)
                     {
                         var x = _horizontalDistanceBetweenSpawnPoint / 2 + point * _horizontalDistanceBetweenSpawnPoint;
@@ -69,6 +80,7 @@ namespace Enemy.Util
                             -marginFromScreenEdge * _verticalDistanceBetweenSpawnPoint;
                         spawnPointArray[line][point] = new Vector3(x, y, 0);
                     }
+                    // 垂直方向の場合
                     else
                     {
                         var x = isLineIncreasingDirectionPositive ? 

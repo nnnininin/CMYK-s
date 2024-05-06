@@ -9,6 +9,7 @@ namespace Enemy
     [RequireComponent(typeof(ItemInstantiateController))]
     public class MobEnemy : BaseEnemy, IColorChangeEnemy, IDropItemEnemy
     {
+        //色が変わるモブ敵のクラス
         [SerializeField]
         private ColorController colorController;
         [SerializeField]
@@ -35,24 +36,24 @@ namespace Enemy
         {
             InstantiateDropItem(transform.position);
         }
-        
+        //アイテムを生成
         public void InstantiateDropItem(Vector3 position)
         {
             itemInstantiateController.InstantiateItem(position, ColorType);
         }
-        
+        //ランダムな色を取得
         public ColorType GetRandomColorType()
         {
             var randomColorType = (ColorType) Random.Range(0, 2);
             return randomColorType;
         }
-
+        //色を変更
         public void SetColorType(ColorType colorType)
         {
             ColorType = colorType;
             colorController.SetColorTypeMaterial(ColorType);
         }
-
+        //色の変更のカウントダウン
         public void ChangeColorCountDown(float deltaTime)
         {
             if (_isBlinkingColor)return;
@@ -60,8 +61,11 @@ namespace Enemy
                 = colorController.ChangeColorCountDown(deltaTime);
             if (!(countDown <= 0)||_isBlinkingColor) return;
             _isBlinkingColor = true;
+            //カウントダウンを知らせるために
+            //色を点滅させるコルーチンを開始
             StartCoroutine(BlinkColor());
         }
+        //色を点滅させる
         public IEnumerator BlinkColor()
         {
             var blinkColor = colorController.BlinkColor(ColorType);

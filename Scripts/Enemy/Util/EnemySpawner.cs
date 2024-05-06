@@ -16,6 +16,7 @@ namespace Enemy.Util
         [Inject] private DiContainer _container;
         [Inject] private GlobalEnemyEventManager _globalEnemyEventManager;
 
+        //使うステージのスクリプタブルオブジェクト
         [SerializeField] private StageScriptableObject[] stageScriptableObjects;
         [SerializeField] private EnemyScriptableObject bossEnemy;
         [SerializeField] private EnemyScriptableObject summonEnemy;
@@ -129,7 +130,7 @@ namespace Enemy.Util
             var totalEvaluation = 0;
             
             //waveDataからランダムに選択してwaveをリストに追加していく
-            //期間内に出現する敵のインターバルの合計秒数が、ステージ期間の秒数を超えるまで繰り返す
+            //期間内に出現する敵の評価値の合計が、ステージに設定された評価値上限を超えるまで繰り返す
             do
             {
                 //stageから取得したwaveのリストの中からランダムに選択
@@ -152,7 +153,6 @@ namespace Enemy.Util
                 _nextSpawnIntervalSecondsList.Add(_nextSpawnIntervalSeconds);
                 Debug.Log($"nextSpawnIntervalSeconds: " + $"{_nextSpawnIntervalSeconds}");
             }
-            //期間内に出現する敵の評価値の合計が、ステージ期間の評価値を超えるまで繰り返す
             while (totalEvaluation < stageScriptableObject.StageEvaluation);
             return waveScriptableObjectsInPeriod;
         }
@@ -168,6 +168,7 @@ namespace Enemy.Util
                 var hitInfo = _rayCasterFromScreen.GetRayCastHit(spawnPositionInScreen, Color.green);
                 if (hitInfo == null) continue;
                 var spawnPositionInWorld = hitInfo.Value.point;
+                //敵を出現させる
                 BaseEnemy.Init(
                     waveScriptableObject.EnemyScriptableObject.EnemyPrefab,
                     waveScriptableObject.EnemyScriptableObject,

@@ -6,7 +6,6 @@ namespace Player.Parameter
     public class MoveSpeed: IDisposable
     {
         private readonly CompositeDisposable _disposables = new();
-        
         public IReadOnlyReactiveProperty<float> MoveSpeedValue { get; }
         public IReadOnlyReactiveProperty<float> MoveSpeedValueLow { get; }
         public bool IsMoveLow { get; private set; }

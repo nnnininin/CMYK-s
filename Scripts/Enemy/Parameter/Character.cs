@@ -1,19 +1,19 @@
 namespace Enemy.Parameter
 {
-    public class Description
+    public class Character
     {
         public string Name { get; private set; }
-        public string DescriptionText { get; private set; }
+        public string Description { get; private set; }
         public int Evaluation { get; private set; }
         
-        public Description(
+        public Character(
             string name,
-            string descriptionText,
+            string description,
             int evaluation
             )
         {
             Name = name;
-            DescriptionText = descriptionText;
+            Description = description;
             Evaluation = evaluation;
         }
     }

@@ -19,6 +19,7 @@ namespace Player.Parameter
                 .AddTo(_disposables);
         }
         
+        //インスペクタ上で整数値で設定したものを小数値に変換する
         private static float CalculateReloadTime(int reloadTime)
         {
             return reloadTime * 0.1f;

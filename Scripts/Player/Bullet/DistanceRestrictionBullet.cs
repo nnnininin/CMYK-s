@@ -4,6 +4,8 @@ namespace Player.Bullet
 {
     public class DistanceRestrictionBullet: Bullet
     {
+        //一定距離で消える弾
+        
         [SerializeField]
         private float disappearDistance;
         

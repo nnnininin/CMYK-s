@@ -4,6 +4,8 @@ using Util.Calculator;
 
 namespace Enemy.State.BaseState.ChaseState
 {
+    // 追跡状態
+    //近い敵との距離を保つ処理あり
     public class ChaseState : BaseState, IGetSeparationVector
     {
         public ChaseState(IEnemy enemy)
@@ -42,12 +44,14 @@ namespace Enemy.State.BaseState.ChaseState
         }
         protected override void OnExit() { }
         
+        // 敵と他の敵との間に適切な距離を保つためのベクトルを取得
         public Vector3 GetSeparationVector()
         {
             const float separationDistance = 5.0f;
             var separationVector = Vector3.zero;
             var enemiesToRemove = new List<GameObject>(); // 削除する敵を一時的に格納するリスト
 
+            //距離が近い敵を取得
             foreach (var closeEnemy in CloseEnemies)
             {
                 if (!closeEnemy)
